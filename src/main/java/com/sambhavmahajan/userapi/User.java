@@ -4,9 +4,10 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class User {
-	private String email,name,password;
-	public User(String email, String name, String password) {
+	private String email,username,name,password;
+	public User(String email,String username, String name, String password) {
 		this.email = email;
+		this.username = username;
 		this.name = name;
 		this.password = password;
 	}
