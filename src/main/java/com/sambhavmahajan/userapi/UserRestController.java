@@ -10,7 +10,7 @@ public class UserRestController {
 	public boolean auth(@RequestBody AuthUser user) {
 		return service.validate(user);
 	}
-	@PostMapping("/add")
+	@PostMapping("/register")
 	public String add(@RequestBody User user) {
 		if(service.isUserName(user.getUsername())) {
 			return "Username: " + user + " already exits.";
@@ -18,7 +18,7 @@ public class UserRestController {
 		service.addUser(user);
 		return "User: " + user + " sucessfully created.";
 	}
-	@GetMapping("/get")
+	@GetMapping("/fetch")
 	public String fetchDetails(@RequestBody AuthUser user) {
 		if(service.isUserName(user.username)) {
 			return service.fetchDetails(user);
