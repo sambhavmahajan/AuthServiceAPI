@@ -29,4 +29,10 @@ public class User {
 	public boolean auth(String password) {
 		return this.password.equals(password);
 	}
+	@Override
+	public String toString() {
+		return "Username: " + username + "\n" 
+				+ "Email: " + email + '\n'+
+				"Name: " + name;
+	}
 }

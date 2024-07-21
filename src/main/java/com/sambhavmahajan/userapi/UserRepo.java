@@ -10,4 +10,10 @@ public class UserRepo{
 	public User findByUserName(String username) {
 		return UserList.get(username);
 	}
+	public void add(User user) {
+		UserList.put(user.getUsername(), user);
+	}
+	public void del(String username) {
+		UserList.remove(username);
+	}
 }
