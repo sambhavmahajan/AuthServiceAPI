@@ -1,11 +1,7 @@
 package com.sambhavmahajan.userapi;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
-@Entity
 public class User {
-	@Id
 	private String username;
 	private String email,name,password;
 	public User(String email,String username, String name, String password) {
