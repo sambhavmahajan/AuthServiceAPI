@@ -13,10 +13,10 @@ public class UserRestController {
 	@PostMapping("/register")
 	public String add(@RequestBody User user) {
 		if(service.isUserName(user.getUsername())) {
-			return "Username: " + user + " already exits.";
+			return "Username " + user.getUsername() + " already exits.";
 		}
 		service.addUser(user);
-		return "User: " + user + " sucessfully created.";
+		return user + "\nsucessfully created.";
 	}
 	@GetMapping("/fetch")
 	public String fetchDetails(@RequestBody AuthUser user) {
