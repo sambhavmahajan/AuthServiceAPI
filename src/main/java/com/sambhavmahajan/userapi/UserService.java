@@ -1,21 +1,30 @@
 package com.sambhavmahajan.userapi;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+@Service
 public class UserService {
-	private UserRepo repository = new UserRepo();
+	private final UserRepo repository;
+	public UserService(UserRepo repo) {
+		this.repository = repo;
+	}
 	public boolean validate(AuthUser user) {
-		User u = repository.findByUserName(user.username);
-		if(u == null) return false;
-		return u.getPassword().equals(user.password);
+		Optional<User> u = repository.findByUserName(user.username);
+		if(u.isPresent()) {
+			return user.password.equals(u.get().getPassword());
+		}
+		return false;
 	}
 	public boolean isUserName(String username) {
-		return repository.findByUserName(username) != null;
+		return repository.findByUserName(username).isPresent();
 	}
 	public void addUser(User user) {
 		repository.add(user);
 	}
 	public String fetchDetails(AuthUser user) {
 		if(validate(user)) {
-			User u = repository.findByUserName(user.username);
+			User u = repository.findByUserName(user.username).get();
 			return u.toString();
 		}
 		return "Bad credentials.";

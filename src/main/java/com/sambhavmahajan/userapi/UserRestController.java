@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
-	private static UserService service = new UserService();
+	private final UserService service;
+	public UserRestController(UserService uService) {
+		service = uService;
+	}
 	@GetMapping("/auth")
 	public boolean auth(@RequestBody AuthUser user) {
 		return service.validate(user);
@@ -20,7 +23,7 @@ public class UserRestController {
 	}
 	@GetMapping("/fetch")
 	public String fetchDetails(@RequestBody AuthUser user) {
-		if(service.isUserName(user.username)) {
+		if(service.isUserName(user.username) && auth(user)) {
 			return service.fetchDetails(user);
 		}
 		return "Failed to fetch details. Bad Credentials.";

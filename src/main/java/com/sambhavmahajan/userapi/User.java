@@ -1,6 +1,5 @@
 package com.sambhavmahajan.userapi;
 
-
 public class User {
 	private String username;
 	private String email,name,password;
@@ -29,6 +28,6 @@ public class User {
 	public String toString() {
 		return "Username: " + username + "\n" 
 				+ "Email: " + email + '\n'+
-				"Name: " + name;
+				"Name: " + this.name;
 	}
 }
